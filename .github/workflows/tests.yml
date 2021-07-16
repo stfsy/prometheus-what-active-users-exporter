@@ -24,3 +24,11 @@ jobs:
     - run: npm test
       env:
         NODE_ENV: ci
+
+    - run: |
+        export RELEASE_NAME=prometheus-what-active-users-exporter-snapshot
+        npx pkg --compress GZip --targets node16-linux-x64,node16-alpine-x64,node16-linuxstatic-x64 lib/index.js
+        mv index-alpine ${RELEASE_NAME}-alpine-x64
+        mv index-linux ${RELEASE_NAME}-linux-x64
+        mv index-linuxstatic ${RELEASE_NAME}-linuxstatic-x64
+        ls -l

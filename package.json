@@ -10,7 +10,7 @@
     "nlv": "node-license-validator --allow-licenses WTFPL ISC MIT Apache-2.0 --allow-packages  domelementtype domhandler domutils entities --production --deep",
     "coverage": "nyc npm run test",
     "docs": "jsdoc lib --destination docs --configure .jsdoc.json --readme README.md ",
-    "preversion": "npm run nlv",
+    "preversion": "npm run nlv && npm run test",
     "version": "npm run changelog && git add -A CHANGELOG.md",
     "postversion": "git push origin master && git push origin master --tags",
     "release-major": "npm version major -m \"chore(release): v%s\"",

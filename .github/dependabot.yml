@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    assignees:
+      - stfsy
+    directory: /
+    schedule:
+      interval: weekly
+    versioning-strategy: increase
+
+  - package-ecosystem: github-actions
+    assignees:
+      - stfsy
+    directory: /
+    schedule:
+      interval: weekly

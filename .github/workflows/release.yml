@@ -23,8 +23,7 @@ jobs:
 
       - name: Set env
         run: | 
-          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          echo "RELEASE_NAME=${{ github.event.repository.name }}-${{ env.RELEASE_VERSION}}" >> $GITHUB_ENV
+          echo "RELEASE_NAME=${{ github.event.repository.name }}-${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Create changelog
         run: |
@@ -32,12 +31,12 @@ jobs:
 
       - name: Create release binaries
         run: |
-          set -x
-          npx pkg --compress GZip --targets node16-linux-x64,node16-alpine-x64,node16-linuxstatic-x64 lib/index.js
-          mv index-alpine "${{ env.RELEASE_NAME }}"-alpine-x64
-          mv index-linux "${{ env.RELEASE_NAME }}"-linux-x64
-          mv index-linuxstatic "${{ env.RELEASE_NAME }}"-linuxstatic-x64
-          ls -l
+            set -x
+            npx pkg --compress GZip --targets node16-linux-x64,node16-alpine-x64,node16-linuxstatic-x64 lib/index.js
+            mv index-alpine "${{ env.RELEASE_NAME }}"-alpine-x64
+            mv index-linux "${{ env.RELEASE_NAME }}"-linux-x64
+            mv index-linuxstatic "${{ env.RELEASE_NAME }}"-linuxstatic-x64
+            ls -l
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -45,9 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
-            ${RELEASE_NAME}-alpine-x64
-            ${RELEASE_NAME}-linux-x64
-            ${RELEASE_NAME}-linuxstatic-x64
-          tag_name: ${{ github.ref }}
-          name: ${{ env.RELEASE_VERSION }}
+            ${{ env.RELEASE_NAME }}-alpine-x64
+            ${{ env.RELEASE_NAME }}-linux-x64
+            ${{ env.RELEASE_NAME }}-linuxstatic-x64
           body_path: ./${{ env.RELEASE_NAME }}.md

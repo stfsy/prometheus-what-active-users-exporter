@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 16.x
 
-      - run: npm install
+      - run: npm ci
 
       - name: Set env
         run: | 

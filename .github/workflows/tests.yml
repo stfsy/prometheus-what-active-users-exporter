@@ -25,10 +25,15 @@ jobs:
       env:
         NODE_ENV: ci
 
+    - name: Set binaries env
+      run: | 
+        echo "RELEASE_NAME=${{ github.event.repository.name }}-snapshot" >> $GITHUB_ENV
+
+
     - run: |
-        export RELEASE_NAME=prometheus-what-active-users-exporter-snapshot
+        set -x
         npx pkg --compress GZip --targets node16-linux-x64,node16-alpine-x64,node16-linuxstatic-x64 lib/index.js
-        mv index-alpine ${RELEASE_NAME}-alpine-x64
-        mv index-linux ${RELEASE_NAME}-linux-x64
-        mv index-linuxstatic ${RELEASE_NAME}-linuxstatic-x64
+        mv index-alpine "${{ env.RELEASE_NAME }}"-alpine-x64
+        mv index-linux "${{ env.RELEASE_NAME }}"-linux-x64
+        mv index-linuxstatic "${{ env.RELEASE_NAME }}"-linuxstatic-x64
         ls -l

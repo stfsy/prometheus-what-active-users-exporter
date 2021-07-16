@@ -5,18 +5,9 @@ const runner = new Runner()
 
 const http = require('http')
 
-const { platform } = require('os')
 const { expect } = require('chai')
 
-let describeOrSkip
-
-if (platform().includes('win')) {
-    describeOrSkip = describe.skip
-} else {
-    describeOrSkip = describe
-}
-
-describeOrSkip('WhatActiveUsersExporter', () => {
+describe('WhatActiveUsersExporter', () => {
     before(() => {
         return runner.start('node', ['lib/index'], '.')
     })
@@ -40,9 +31,10 @@ describeOrSkip('WhatActiveUsersExporter', () => {
                     response.on('end', () => {
                         const body = responseData.join()
                         expect(body).to.contain('user_sessions_currently_active')
+                        resolve()
                     })
                 })
-            }, 6000)
+            }, 5000)
         })
     })
 })

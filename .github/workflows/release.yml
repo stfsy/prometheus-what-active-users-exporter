@@ -14,6 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2.2.0
+        with:
+          node-version: 16.x
+
+      - run: npm install
+
       - name: Set env
         run: | 
          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
@@ -23,13 +30,23 @@ jobs:
         run: |
           ./.get_latest_changes_for_release_notes.sh > ./${RELEASE_NAME}.md
 
-      - name: Create Release
-        uses: actions/create-release@v1
+      - name: Create release binaries
+        run: |
+          npx pkg --compress GZip --targets node16-linux-x64,node16-alpine-x64,node16-linuxstatic-x64 lib/index.js
+          mv index-alpine ${RELEASE_NAME}-alpine-x64
+          mv index-linux ${RELEASE_NAME}-linux-x64
+          mv index-linuxstatic ${RELEASE_NAME}-linuxstatic-x64
+          ls -l
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          files: |
+            ${RELEASE_NAME}-alpine-x64
+            ${RELEASE_NAME}-linux-x64
+            ${RELEASE_NAME}-linuxstatic-x64
           tag_name: ${{ github.ref }}
-          release_name: ${{ env.RELEASE_VERSION }}
+          name: ${{ env.RELEASE_VERSION }}
           body_path: ./${{ env.RELEASE_NAME }}.md
-          draft: false
-          prerelease: false

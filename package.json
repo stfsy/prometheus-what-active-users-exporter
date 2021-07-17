@@ -1,6 +1,6 @@
 {
   "name": "prometheus-what-active-users-exporter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Prometheus exporter for amount of logged-in users on a system",
   "main": "lib/index",
   "scripts": {

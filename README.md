@@ -16,7 +16,7 @@ This is a simple server that scrapes the output of the unix command `w`. [w disp
 
 Currently, the only metric it exports is `user_sessions_currently_active` with label `user`:
 
-- user_sessions_currently_active{user=root} 1
+- what_user_sessions_currently_active{user=root} 1
 
 The exporter was tested on Ubuntu.
 

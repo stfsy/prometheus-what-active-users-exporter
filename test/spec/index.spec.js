@@ -19,7 +19,7 @@ describe('WhatActiveUsersExporter', () => {
     it('exports the active users metric', () => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                http.get('http://localhost:48151/metrics', (response) => {
+                http.get('http://localhost:9839/metrics', (response) => {
                     if (response.statusCode !== 200) {
                         reject(response.statusCode)
                         return

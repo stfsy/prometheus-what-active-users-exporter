@@ -30,7 +30,7 @@ describe('WhatActiveUsersExporter', () => {
                     })
                     response.on('end', () => {
                         const body = responseData.join()
-                        expect(body).to.contain('user_sessions_currently_active')
+                        expect(body).to.contain('user_sessions_currently_active{user="pi"}')
                         resolve()
                     })
                 })

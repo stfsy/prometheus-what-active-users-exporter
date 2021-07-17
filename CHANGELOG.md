@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.3.0...v0.4.0) (2021-07-17)
+
+
+### Features
+
+* reset metric after users have logged out ([933faee](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/933faeee0e7f6f838df7c0d67187a04e66eacb11))
+
+
+
 # [0.3.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.2.0...v0.3.0) (2021-07-17)
 
 

@@ -38,6 +38,30 @@ require.cache[wResolvedPath] = {
     }
 }
 
+const waitAndExpectMetricStrings = (waitMillis, ...expectedMetric) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            http.get('http://localhost:9839/metrics', (response) => {
+                if (response.statusCode !== 200) {
+                    reject(response.statusCode)
+                    return
+                }
+                const responseData = []
+                response.on('data', (data) => {
+                    responseData.push(data.toString('ascii'))
+                })
+                response.on('end', () => {
+                    const body = responseData.join()
+                    expectedMetric.forEach((metric) => {
+                        expect(body).to.contain(metric)
+                    })
+                    resolve()
+                })
+            })
+        }, waitMillis)
+    })
+}
+
 const index = require('../../lib/index')
 
 describe('WhatActiveUsersExporter', () => {
@@ -46,75 +70,20 @@ describe('WhatActiveUsersExporter', () => {
         return index()
     })
 
-    it('update the active users metric', () => {
-        returnTwoPips = true
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                http.get('http://localhost:9839/metrics', (response) => {
-                    if (response.statusCode !== 200) {
-                        reject(response.statusCode)
-                        return
-                    }
-                    const responseData = []
-                    response.on('data', (data) => {
-                        responseData.push(data.toString('ascii'))
-                    })
-                    response.on('end', () => {
-                        const body = responseData.join()
-                        expect(body).to.contain('user_sessions_currently_active{user="pip"} 2')
-                        resolve()
-                    })
-                })
-            }, 500)
-        })
+
+    it('returns one active sessions', () => {
+        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 1')
     })
 
     it('removes metric value for inactive sessions', () => {
         returnTwoPips = false
         returnOnePip3 = true
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                http.get('http://localhost:9839/metrics', (response) => {
-                    if (response.statusCode !== 200) {
-                        reject(response.statusCode)
-                        return
-                    }
-                    const responseData = []
-                    response.on('data', (data) => {
-                        responseData.push(data.toString('ascii'))
-                    })
-                    response.on('end', () => {
-                        const body = responseData.join()
-                        expect(body).to.contain('user_sessions_currently_active{user="pip"} 0')
-                        resolve()
-                    })
-                })
-            }, 500)
-        })
+        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 0')
     })
 
     it('add another metric for a new session', () => {
         returnTwoPips = false
         returnOnePip3 = true
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                http.get('http://localhost:9839/metrics', (response) => {
-                    if (response.statusCode !== 200) {
-                        reject(response.statusCode)
-                        return
-                    }
-                    const responseData = []
-                    response.on('data', (data) => {
-                        responseData.push(data.toString('ascii'))
-                    })
-                    response.on('end', () => {
-                        const body = responseData.join()
-                        expect(body).to.contain('user_sessions_currently_active{user="pip"} 0')
-                        expect(body).to.contain('user_sessions_currently_active{user="pip3"} 1')
-                        resolve()
-                    })
-                })
-            }, 500)
-        })
+        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 0', 'user_sessions_currently_active{user="pip3"} 1')
     })
 })

@@ -36,6 +36,9 @@ jobs:
             mv index-alpine "${{ env.RELEASE_NAME }}"-alpine-x64
             mv index-linux "${{ env.RELEASE_NAME }}"-linux-x64
             mv index-linuxstatic "${{ env.RELEASE_NAME }}"-linuxstatic-x64
+            sha256sum "${{ env.RELEASE_NAME }}"-alpine-x64 >> sha256sums.txt
+            sha256sum "${{ env.RELEASE_NAME }}"-linux-x64 >> sha256sums.txt
+            sha256sum "${{ env.RELEASE_NAME }}"-linuxstatic-x64 >> sha256sums.txt
             ls -l
 
       - name: Release
@@ -44,6 +47,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
+            sha256sums.txt
             ${{ env.RELEASE_NAME }}-alpine-x64
             ${{ env.RELEASE_NAME }}-linux-x64
             ${{ env.RELEASE_NAME }}-linuxstatic-x64

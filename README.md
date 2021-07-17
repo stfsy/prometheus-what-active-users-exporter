@@ -22,6 +22,8 @@ The exporter was tested on Ubuntu.
 
 ## Getting Started
 
+Download the binary from the [latest release](https://github.com/stfsy/prometheus-what-active-users-exporter/releases/latest). We currently provide binaries for Linux and Alpine Linux on amd64.
+
 To run it:
 
 ```bash

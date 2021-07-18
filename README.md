@@ -14,9 +14,10 @@ This is a simple server that scrapes the output of the unix command `w`. [w disp
 
 **Why would you want to do that?** This exporter will allow you to monitor who logs into your system. So you can define alarms for unauthorized users, the max. amount of active session or even every active user session. **`W` will also monitor logins via SSH which allows you to track even active remote sessions.**
 
-Currently, the only metric it exports is `user_sessions_currently_active` with label `user`:
+Currently, two metrics are created and exposed: 
 
-- what_user_sessions_currently_active{user=root} 1
+- what_up{version="x.x.x"} 1
+- what_user_sessions_currently_active{user="demo"} 1
 
 The exporter was tested on Ubuntu.
 

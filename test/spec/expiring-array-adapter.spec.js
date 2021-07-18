@@ -16,7 +16,7 @@ describe('ExpiringArrayAdapter', () => {
         const expiringArray = new ExpiringArrayAdapter(500)
         expiringArray.push('1')
         expect(expiringArray.get(0)).to.equal('1')
-        await delay(750)
+        await delay(2000)
         expect(expiringArray.get(0)).to.be.undefined
     })
 

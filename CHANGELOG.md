@@ -1,3 +1,15 @@
+# [0.5.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.4.0...v0.5.0) (2021-07-18)
+
+
+### Features
+
+* add array that expires contents after given time ([9f5a6b4](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/9f5a6b4e89572df90b79b6036f9138f47e75aef3))
+* add up metric to indicate exporter state ([ac00eb7](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/ac00eb75ce6c162f6c552b1a621897a1edf9063c))
+* make metrics retention configurable ([7dc35d8](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/7dc35d89f2c7017205e7ecef012429ba14e3c40d))
+* store login sessions in expiring array ([ab49f69](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/ab49f69ab979e4020aa91ea1dbed9007e2037fbd))
+
+
+
 # [0.4.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.3.0...v0.4.0) (2021-07-17)
 
 

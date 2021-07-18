@@ -1,6 +1,6 @@
 {
   "name": "prometheus-what-active-users-exporter",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Prometheus exporter that scrapes currently logged in users on unix systems",
   "main": "lib/index",
   "scripts": {

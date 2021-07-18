@@ -8,6 +8,7 @@ describe('Flags', () => {
     const knownFlags = {
         '--listen.host': '123.0.0.1',
         '--listen.port': '48123',
+        '--metrics.retention': '2',
         '--metrics.endpoint': '/prometheus',
         '--metrics.prefix': 'where',
         '--metrics.with-timestamp': 'true',
@@ -17,6 +18,7 @@ describe('Flags', () => {
     const map = {
         '--listen.host': 'host',
         '--listen.port': 'port',
+        '--metrics.retention': 'retention',
         '--metrics.endpoint': 'endpoint',
         '--metrics.prefix': 'prefix',
         '--metrics.with-timestamp': 'timestamp',
@@ -45,7 +47,7 @@ describe('Flags', () => {
             return context
         }, [])
         const result = flags(allFlags)
-        expect(Object.keys(result)).to.have.length(6)
+        expect(Object.keys(result)).to.have.length(Object.keys(knownFlags).length)
         Object.keys(map).forEach(key => {
             expect(result[map[key]]).to.equal(knownFlags[key])
         })

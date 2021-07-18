@@ -70,6 +70,7 @@ By default the exporter will start with sensible default values. Configuration c
 
 -  --listen.host: `default=127.0.0.1` 
 -  --listen.port `default=127.0.0.1`
+-  --metrics.retention `default=30000`
 -  --metrics.endpoint `default=/metrics` 
 -  --metrics.prefix `default=what`
 -  --metrics.with-timestamp `default=false`

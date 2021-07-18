@@ -76,6 +76,17 @@ By default the exporter will start with sensible default values. Configuration c
 -  --metrics.with-timestamp `default=false`
 -  --scrape.interval `default=5000` 
 
+:warning: 
+
+There's a tradeoff between detecting every single and possibly very short login vs. putting additional load on your system by querying too often. 
+By default, the exporter will query the active sessions every 5s and will store every session for 30s. 
+**Meaning**: Login sessions that last less than 5s might no be detected by the exporter. Login sessions that last longer than 5s will be stored for 
+up to 30s - even if the user logs off after 6s - to make sure that Prometheus is able to catch the updated metric.
+
+
+Please make sure that `--metrics.retention` is greater than the scrape interval of your Prometheus job, to ensure Prometheus is able to pick up all values.
+
+
 ### Building
 
 ```bash

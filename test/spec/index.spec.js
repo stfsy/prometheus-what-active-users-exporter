@@ -97,7 +97,7 @@ describe('WhatActiveUsersExporter', () => {
         // => metrics should at least be stored for less than 1s, thus we wait 750ms
         returnTwoPips = false
         returnOnePip3 = true
-        return waitAndExpectMetricStrings(750, 'user_sessions_currently_active{user="pip"} 1')
+        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 1')
     })
 
     it('removes metric value for inactive sessions after retention period', () => {

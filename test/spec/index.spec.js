@@ -69,7 +69,7 @@ const waitAndExpectMetricStrings = (waitMillis, ...expectedMetric) => {
 }
 
 
-describe.only('WhatActiveUsersExporter', () => {
+describe('WhatActiveUsersExporter', () => {
 
     const index = require('../../lib/index')
 

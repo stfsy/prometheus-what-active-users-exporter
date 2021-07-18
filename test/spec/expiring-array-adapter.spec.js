@@ -10,7 +10,7 @@ const delay = (millis) => {
     })
 }
 
-describe.only('ExpiringArrayAdapter', () => {
+describe('ExpiringArrayAdapter', () => {
 
     it('removes element from array after 500ms', async () => {
         const expiringArray = new ExpiringArrayAdapter(500)

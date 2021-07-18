@@ -1,6 +1,7 @@
 'use strict'
 
-process.env.EXPORTER_CHECK_INTERVAL_MILLIS = 100
+process.env.EXPORTER_CHECK_INTERVAL_MILLIS = 250
+process.env.EXPORTER_METRICS_RETENTION = 1000
 
 const pkg = require('../../package.json')
 const http = require('http')
@@ -67,9 +68,10 @@ const waitAndExpectMetricStrings = (waitMillis, ...expectedMetric) => {
     })
 }
 
-const index = require('../../lib/index')
 
-describe('WhatActiveUsersExporter', () => {
+describe.only('WhatActiveUsersExporter', () => {
+
+    const index = require('../../lib/index')
 
     after(() => {
         return index()
@@ -81,7 +83,7 @@ describe('WhatActiveUsersExporter', () => {
 
     it('indicates with a metric that exporter is up', () => {
         throwError = true
-        return waitAndExpectMetricStrings(500, `what_up{version="${pkg.version}"} 0`)
+        return waitAndExpectMetricStrings(1500, `what_up{version="${pkg.version}"} 0`)
     })
 
     it('returns one active sessions', () => {
@@ -89,10 +91,22 @@ describe('WhatActiveUsersExporter', () => {
         return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 1')
     })
 
-    it('removes metric value for inactive sessions', () => {
+    it('keeps metrics until retention period', () => {
+        // retention period is 1s
+        // scrape interval is 250ms
+        // => metrics should at least be stored for less than 1s, thus we wait 750ms
         returnTwoPips = false
         returnOnePip3 = true
-        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 0')
+        return waitAndExpectMetricStrings(750, 'user_sessions_currently_active{user="pip"} 1')
+    })
+
+    it('removes metric value for inactive sessions after retention period', () => {
+        // retention period is 1s
+        // scrape interval is 250ms
+        // => metrics should at least be stored for less than 1s, thus we wait 2s to check if metric was cleared
+        returnTwoPips = false
+        returnOnePip3 = true
+        return waitAndExpectMetricStrings(2000, 'user_sessions_currently_active{user="pip"} 0')
     })
 
     it('add another metric for a new session', () => {

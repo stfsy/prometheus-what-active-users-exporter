@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon npm start",
     "start": "node lib/index",
-    "test": "mocha test/spec --check-leaks --timeout 10000",
+    "test": "mocha test/spec --check-leaks --timeout 10000 --file test/after-all.js",
     "nlv": "node-license-validator --allow-licenses WTFPL ISC MIT Apache-2.0 --allow-packages  domelementtype domhandler domutils entities --production --deep",
     "coverage": "nyc npm run test",
     "docs": "jsdoc lib --destination docs --configure .jsdoc.json --readme README.md ",

@@ -54,7 +54,6 @@
     "nodemon": "^2.0.12",
     "nyc": "^15.1.0",
     "pkg": "^5.3.0",
-    "trim-newlines": "^4.0.2",
-    "watch": "^0.13.0"
+    "trim-newlines": "^4.0.2"
   }
 }

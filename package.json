@@ -39,7 +39,7 @@
   "dependencies": {
     "@opentelemetry/api": "^1.0.1",
     "@opentelemetry/exporter-prometheus": "^0.24.0",
-    "@opentelemetry/metrics": "^0.23.0",
+    "@opentelemetry/metrics": "^0.24.0",
     "http-graceful-shutdown": "^3.1.2"
   },
   "devDependencies": {

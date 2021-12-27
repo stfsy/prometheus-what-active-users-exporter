@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "conventional-changelog-cli": "^2.1.1",
+    "conventional-changelog-cli": "^2.2.2",
     "jsdoc": "^3.6.7",
     "merge": "^2.1.1",
     "minami": "^1.1.1",

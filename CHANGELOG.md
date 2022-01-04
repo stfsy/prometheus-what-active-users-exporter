@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.5.0...v0.6.0) (2022-01-04)
+
+
+### Features
+
+* use @opentelemetry/sdw-metrics-base module ([a75a4a9](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/a75a4a964b612bda355f86e846e09f2d3e366bed))
+
+
+
 # [0.5.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.4.0...v0.5.0) (2021-07-18)
 
 

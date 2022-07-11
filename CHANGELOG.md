@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.6.0...v0.7.0) (2022-07-11)
+
+
+### Features
+
+* make compatible with latest open telemetry deps ([5d6a543](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/5d6a543bfcfd7336a1c18018fbc18cab974955b5))
+
+
+
 # [0.6.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.5.0...v0.6.0) (2022-01-04)
 
 

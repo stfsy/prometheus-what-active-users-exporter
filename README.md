@@ -1,9 +1,5 @@
 # Active Users Exporter for Prometheus
 
-[![Build Status](https://travis-ci.org/stfsy/prometheus-what-active-users-exporter.svg)](https://travis-ci.org/stfsy/prometheus-what-active-users-exporter)
-[![Dependency Status](https://img.shields.io/david/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/main/package.json)
-[![DevDependency Status](https://img.shields.io/david/dev/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/main/package.json)
-[![Npm downloads](https://img.shields.io/npm/dm/prometheus-what-active-users-exporter.svg)](https://www.npmjs.com/package/prometheus-what-active-users-exporter)
 [![Npm Version](https://img.shields.io/npm/v/prometheus-what-active-users-exporter.svg)](https://www.npmjs.com/package/prometheus-what-active-users-exporter)
 [![Git tag](https://img.shields.io/github/tag/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/releases)
 [![Github issues](https://img.shields.io/github/issues/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/issues)
@@ -16,9 +12,9 @@ This is a simple server that scrapes the output of the unix command `w`. [w disp
 
 Currently, three metrics are created and exposed: 
 
-- `Status of the exporter`: what_up{version="x.x.x"} 1
-- `Sum of session per user`: what_user_sessions_currently_active{user="demo"} 1
-- `Single sessions per user`: what_each_session_currently_active{user="pip3",ip="192.168.2.107",tty="pts/0"} 1
+- Status of the exporter: `what_up{version="x.x.x"} 1`
+- Sum of session per user: `what_user_sessions_currently_active{user="demo"} 1`
+- Single sessions per user: `what_each_session_currently_active{user="pip3",ip="192.168.2.107",tty="pts/0"} 1`
 
 The exporter was tested on Ubuntu.
 

@@ -29,6 +29,7 @@ require.cache[wResolvedPath] = {
             pip       pts/0    192.168.2.107    23:50    1.00s  0.15s  0.01s w
             `)
         } else if (returnOnePip3) {
+            console.log('return pip3')
             return Promise.resolve(`23:50:13 up 1 day, 11:33,  1 user,  load average: 0.08, 0.03, 0.01
             USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
             pip3       pts/0    192.168.2.107    23:50    1.00s  0.15s  0.01s w
@@ -38,7 +39,9 @@ require.cache[wResolvedPath] = {
         } else {
             return Promise.resolve(`23:50:13 up 1 day, 11:33,  1 user,  load average: 0.08, 0.03, 0.01
             USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-            pip       pts/0    192.168.2.107    23:50    1.00s  0.15s  0.01s w
+            pip      pts/0    192.168.2.107    23:51    1.00s  0.15s  0.01s w
+            pip      pts/1    192.168.2.107    23:50    1.00s  0.15s  0.01s ls
+            pipX     pts/2    44.33.22.1       23:49    1.00s  0.15s  0.01s w
             `)
         }
     }
@@ -58,8 +61,45 @@ const waitAndExpectMetricStrings = (waitMillis, ...expectedMetric) => {
                 })
                 response.on('end', () => {
                     const body = responseData.join()
+
                     expectedMetric.forEach((metric) => {
-                        expect(body).to.contain(metric)
+                        try {
+                            expect(body).to.contain(metric)
+                        } catch (e) {
+                            console.error('Assertion error.', 'Full response was...')
+                            console.error(body)
+                            throw e
+                        }
+                    })
+                    resolve()
+                })
+            })
+        }, waitMillis)
+    })
+}
+
+const waitAndDoNotExpectMetricStrings = (waitMillis, ...expectedMetric) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            http.get('http://localhost:9839/metrics', (response) => {
+                if (response.statusCode !== 200) {
+                    reject(response.statusCode)
+                    return
+                }
+                const responseData = []
+                response.on('data', (data) => {
+                    responseData.push(data.toString('ascii'))
+                })
+                response.on('end', () => {
+                    const body = responseData.join()
+                    expectedMetric.forEach((metric) => {
+                        try {
+                            expect(body).to.not.contain(metric)
+                        } catch (e) {
+                            console.error('Assertion error.', 'Full response was...')
+                            console.error(body)
+                            throw e
+                        }
                     })
                     resolve()
                 })
@@ -87,31 +127,24 @@ describe('WhatActiveUsersExporter', () => {
     })
 
     it('returns one active sessions', () => {
+        returnOnePip3 = true
         throwError = false
-        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 1')
+        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip3"} 1')
     })
 
-    it('keeps metrics until retention period', () => {
-        // retention period is 1s
-        // scrape interval is 250ms
-        // => metrics should at least be stored for less than 1s, thus we wait 750ms
+    it('adds another metric for a new session', () => {
         returnTwoPips = false
-        returnOnePip3 = true
-        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 1')
+        returnOnePip3 = false
+        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 2', 'user_sessions_currently_active{user="pipX"} 1')
     })
 
-    it('removes metric value for inactive sessions after retention period', () => {
-        // retention period is 1s
-        // scrape interval is 250ms
-        // => metrics should at least be stored for less than 1s, thus we wait 2s to check if metric was cleared
+    it('adds metrics for each session', () => {
+        returnOnePip3 = false
         returnTwoPips = false
-        returnOnePip3 = true
-        return waitAndExpectMetricStrings(2000, 'user_sessions_currently_active{user="pip"} 0')
-    })
-
-    it('add another metric for a new session', () => {
-        returnTwoPips = false
-        returnOnePip3 = true
-        return waitAndExpectMetricStrings(500, 'user_sessions_currently_active{user="pip"} 0', 'user_sessions_currently_active{user="pip3"} 1')
+        throwError = false
+        return waitAndExpectMetricStrings(500,
+            'each_session_currently_active{user="pip",ip="192.168.2.107",tty="pts/0"} 1',
+            'each_session_currently_active{user="pip",ip="192.168.2.107",tty="pts/1"} 1',
+            'each_session_currently_active{user="pipX",ip="44.33.22.1",tty="pts/2"} 1')
     })
 })

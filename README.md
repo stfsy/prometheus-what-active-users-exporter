@@ -1,13 +1,13 @@
 # Active Users Exporter for Prometheus
 
 [![Build Status](https://travis-ci.org/stfsy/prometheus-what-active-users-exporter.svg)](https://travis-ci.org/stfsy/prometheus-what-active-users-exporter)
-[![Dependency Status](https://img.shields.io/david/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/master/package.json)
-[![DevDependency Status](https://img.shields.io/david/dev/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/master/package.json)
+[![Dependency Status](https://img.shields.io/david/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/main/package.json)
+[![DevDependency Status](https://img.shields.io/david/dev/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/main/package.json)
 [![Npm downloads](https://img.shields.io/npm/dm/prometheus-what-active-users-exporter.svg)](https://www.npmjs.com/package/prometheus-what-active-users-exporter)
 [![Npm Version](https://img.shields.io/npm/v/prometheus-what-active-users-exporter.svg)](https://www.npmjs.com/package/prometheus-what-active-users-exporter)
 [![Git tag](https://img.shields.io/github/tag/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/releases)
 [![Github issues](https://img.shields.io/github/issues/stfsy/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/issues)
-[![License](https://img.shields.io/npm/l/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/prometheus-what-active-users-exporter.svg)](https://github.com/stfsy/prometheus-what-active-users-exporter/blob/main/LICENSE)
 
 
 This is a simple server that scrapes the output of the unix command `w`. [w displays information about the users currently on the machine, and their processes. ](https://man7.org/linux/man-pages/man1/w.1.html)

@@ -2,7 +2,7 @@
 
 set -ex
 
-MAIN_BRANCH='master'
+MAIN_BRANCH='main'
 DEV_BRANCH='dev'
 
 git checkout $MAIN_BRANCH

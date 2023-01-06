@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.7.0...v0.8.0) (2023-01-06)
+
+
+### Features
+
+* add single session metric, keep metrics in memory until next scrape ([e51cda1](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/e51cda14f07837c9328d87937d9ee557ce6ac929))
+
+
+
 # [0.7.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.6.0...v0.7.0) (2022-07-11)
 
 

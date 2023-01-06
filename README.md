@@ -68,7 +68,6 @@ By default the exporter will start with sensible default values. Configuration c
 
 -  --listen.host: `default=127.0.0.1` 
 -  --listen.port `default=127.0.0.1`
--  --metrics.retention `default=30000`
 -  --metrics.endpoint `default=/metrics` 
 -  --metrics.prefix `default=what`
 -  --metrics.with-timestamp `default=false`
@@ -77,13 +76,9 @@ By default the exporter will start with sensible default values. Configuration c
 :warning: 
 
 There's a tradeoff between detecting every single and possibly very short login vs. putting additional load on your system by querying too often. 
-By default, the exporter will query the active sessions every 5s and will store every session for 30s. 
-**Meaning**: Login sessions that last less than 5s might no be detected by the exporter. Login sessions that last longer than 5s will be stored for 
-up to 30s - even if the user logs off after 6s - to make sure that Prometheus is able to catch the updated metric.
+By default, the exporter will query the active sessions every 5s.
 
-
-Please make sure that `--metrics.retention` is greater than the scrape interval of your Prometheus job, to ensure Prometheus is able to pick up all values.
-
+**Meaning**: Login sessions that last less than 5s might no be detected by the exporter. Login sessions that last longer than 5s will be stored. 
 
 ### Building
 

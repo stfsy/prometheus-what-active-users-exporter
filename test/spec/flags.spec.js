@@ -8,7 +8,6 @@ describe('Flags', () => {
     const knownFlags = {
         '--listen.host': '123.0.0.1',
         '--listen.port': '48123',
-        '--metrics.retention': '2',
         '--metrics.endpoint': '/prometheus',
         '--metrics.prefix': 'where',
         '--metrics.with-timestamp': 'true',
@@ -18,7 +17,6 @@ describe('Flags', () => {
     const map = {
         '--listen.host': 'host',
         '--listen.port': 'port',
-        '--metrics.retention': 'retention',
         '--metrics.endpoint': 'endpoint',
         '--metrics.prefix': 'prefix',
         '--metrics.with-timestamp': 'timestamp',

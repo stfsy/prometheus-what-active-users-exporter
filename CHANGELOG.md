@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.8.0...v0.8.1) (2023-01-07)
+
+
+### Bug Fixes
+
+* terminated session metrics are not deleted ([d977b29](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/d977b2987c71f95c5bae5eeadc9432e68912bba5))
+
+
+
 # [0.8.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.7.0...v0.8.0) (2023-01-06)
 
 

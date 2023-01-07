@@ -29,10 +29,9 @@ require.cache[wResolvedPath] = {
             pip       pts/0    192.168.2.107    23:50    1.00s  0.15s  0.01s w
             `)
         } else if (returnOnePip3) {
-            console.log('return pip3')
             return Promise.resolve(`23:50:13 up 1 day, 11:33,  1 user,  load average: 0.08, 0.03, 0.01
             USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
-            pip3       pts/0    192.168.2.107    23:50    1.00s  0.15s  0.01s w
+            pip3       pts/0    192.168.2.111    23:50    1.00s  0.15s  0.01s w
             `)
         } else if (throwError) {
             return Promise.reject('Err!')
@@ -68,6 +67,7 @@ const waitAndExpectMetricStrings = (waitMillis, ...expectedMetric) => {
                         } catch (e) {
                             console.error('Assertion error.', 'Full response was...')
                             console.error(body)
+                            console.error('Expected to find', metric)
                             throw e
                         }
                     })
@@ -98,6 +98,7 @@ const waitAndDoNotExpectMetricStrings = (waitMillis, ...expectedMetric) => {
                         } catch (e) {
                             console.error('Assertion error.', 'Full response was...')
                             console.error(body)
+                            console.error('Expected to NOT find', metric)
                             throw e
                         }
                     })
@@ -143,8 +144,23 @@ describe('WhatActiveUsersExporter', () => {
         returnTwoPips = false
         throwError = false
         return waitAndExpectMetricStrings(500,
-            'each_session_currently_active{user="pip",ip="192.168.2.107",tty="pts/0"} 1',
-            'each_session_currently_active{user="pip",ip="192.168.2.107",tty="pts/1"} 1',
-            'each_session_currently_active{user="pipX",ip="44.33.22.1",tty="pts/2"} 1')
+            'each_session_currently_active{ip="192.168.2.107",user="pip",tty="pts/0"} 1',
+            'each_session_currently_active{ip="192.168.2.107",user="pip",tty="pts/1"} 1',
+            'each_session_currently_active{ip="44.33.22.1",user="pipX",tty="pts/2"} 1')
+    })
+
+    it('removes metric of terminated sessions', async () => {
+        returnOnePip3 = true
+        await waitAndExpectMetricStrings(2000, 'user_sessions_currently_active{user="pip3"} 1')
+        await waitAndExpectMetricStrings(0, 'each_session_currently_active{ip="192.168.2.111",user="pip3",tty="pts/0"} 1')
+        returnOnePip3 = false
+        returnTwoPips = false
+        throwError = false
+        await waitAndDoNotExpectMetricStrings(2000, 'user_sessions_currently_active{user="pip3"} 1')
+        await waitAndExpectMetricStrings(500,
+            'each_session_currently_active{ip="192.168.2.111",user="pip3",tty="pts/0"} 0',
+            'each_session_currently_active{ip="192.168.2.107",user="pip",tty="pts/0"} 1',
+            'each_session_currently_active{ip="192.168.2.107",user="pip",tty="pts/1"} 1',
+            'each_session_currently_active{ip="44.33.22.1",user="pipX",tty="pts/2"} 1')
     })
 })

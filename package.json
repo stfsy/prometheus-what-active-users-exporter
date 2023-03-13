@@ -52,7 +52,7 @@
     "node-license-validator": "^1.3.2",
     "nodemon": "^2.0.21",
     "nyc": "^15.1.0",
-    "pkg": "^5.8.0",
+    "pkg": "^5.8.1",
     "trim-newlines": "^4.0.2"
   }
 }

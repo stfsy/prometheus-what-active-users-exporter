@@ -53,6 +53,6 @@
     "nodemon": "^2.0.21",
     "nyc": "^15.1.0",
     "pkg": "^5.8.1",
-    "trim-newlines": "^4.0.2"
+    "trim-newlines": "^5.0.0"
   }
 }

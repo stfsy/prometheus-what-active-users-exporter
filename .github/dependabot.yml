@@ -7,6 +7,10 @@ updates:
     schedule:
       interval: weekly
     versioning-strategy: increase
+    groups:
+      "@opentelemetry":
+        patterns:
+          - "@opentelemetry*"
 
   - package-ecosystem: github-actions
     assignees:

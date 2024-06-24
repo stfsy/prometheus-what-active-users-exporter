@@ -1,3 +1,7 @@
+# [1.0.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.9.0...v1.0.0) (2024-06-24)
+
+
+
 # [0.9.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.7.0...v0.9.0) (2023-02-27)
 
 

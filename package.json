@@ -11,12 +11,11 @@
     "coverage": "nyc npm run test",
     "docs": "jsdoc lib --destination docs --configure .jsdoc.json --readme README.md ",
     "preversion": "npm run nlv && npm run test",
-    "version": "npm run changelog && git add -A CHANGELOG.md",
     "postversion": "git push origin main && git push origin main --tags",
-    "release-major": "npm version major -m \"chore(release): v%s\"",
-    "release-minor": "npm version minor -m \"chore(release): v%s\"",
-    "release-patch": "npm version patch -m \"chore(release): v%s\"",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "push-tags": "git push --follow-tags origin main",
+    "release-generic": "npm run push-tags",
+    "release-minor": "npm run standard-version -- --release-as minor && npm run release-generic",
+    "release-major": "npm run standard-version -- --release-as major && npm run release-generic"
   },
   "repository": {
     "type": "git",
@@ -39,11 +38,11 @@
   "dependencies": {
     "@opentelemetry/exporter-prometheus": "^0.52.1",
     "@opentelemetry/sdk-metrics": "^1.24.1",
-    "http-graceful-shutdown": "^3.1.12"
+    "http-graceful-shutdown": "^3.1.12",
+    "standard-version": "^9.5.0"
   },
   "devDependencies": {
     "chai": "^4.3.10",
-    "conventional-changelog-cli": "^5.0.0",
     "jsdoc": "^4.0.3",
     "merge": "^2.1.1",
     "minami": "^1.1.1",

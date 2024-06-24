@@ -2,18 +2,12 @@
 
 
 
-# [0.9.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.7.0...v0.9.0) (2023-02-27)
+# [0.9.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.8.1...v0.9.0) (2023-02-27)
 
 
 ### Bug Fixes
 
-* terminated session metrics are not deleted ([d977b29](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/d977b2987c71f95c5bae5eeadc9432e68912bba5))
 * update imports ([d263c8f](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/d263c8f24cdca9d234025ed7c23ba0176ae58543))
-
-
-### Features
-
-* add single session metric, keep metrics in memory until next scrape ([e51cda1](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/e51cda14f07837c9328d87937d9ee557ce6ac929))
 
 
 
@@ -92,7 +86,7 @@
 
 
 
-# 0.2.0 (2021-07-17)
+# [0.2.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.1.0...v0.2.0) (2021-07-17)
 
 
 ### Features

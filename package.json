@@ -38,8 +38,7 @@
   "dependencies": {
     "@opentelemetry/exporter-prometheus": "^0.200.0",
     "@opentelemetry/sdk-node": "0.200.0",
-    "http-graceful-shutdown": "^3.1.14",
-    "standard-version": "^9.5.0"
+    "http-graceful-shutdown": "^3.1.14"
   },
   "devDependencies": {
     "chai": "^4.3.10",
@@ -52,6 +51,7 @@
     "nodemon": "^3.1.9",
     "nyc": "^17.1.0",
     "pkg": "^5.8.1",
+    "standard-version": "^9.5.0",
     "trim-newlines": "^5.0.0"
   }
 }

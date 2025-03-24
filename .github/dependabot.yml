@@ -11,6 +11,8 @@ updates:
       "@opentelemetry":
         patterns:
           - "@opentelemetry*"
+    ignore:
+      - dependency-name: "chai"
 
   - package-ecosystem: github-actions
     assignees:

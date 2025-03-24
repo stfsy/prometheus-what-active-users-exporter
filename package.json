@@ -14,8 +14,8 @@
     "postversion": "git push origin main && git push origin main --tags",
     "push-tags": "git push --follow-tags origin main",
     "release-generic": "npm run push-tags",
-    "release-minor": "npm run standard-version -- --release-as minor && npm run release-generic",
-    "release-major": "npm run standard-version -- --release-as major && npm run release-generic"
+    "release-minor": "standard-version --release-as minor && npm run release-generic",
+    "release-major": "standard-version --release-as major && npm run release-generic"
   },
   "repository": {
     "type": "git",

@@ -48,7 +48,7 @@
     "minimist": "^1.2.8",
     "mocha": "^11.7.5",
     "node-license-validator": "^1.3.2",
-    "nodemon": "^3.1.10",
+    "nodemon": "^3.1.11",
     "nyc": "^17.1.0",
     "pkg": "^5.8.1",
     "standard-version": "^9.5.0",

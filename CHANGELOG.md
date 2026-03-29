@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v1.1.0...v1.2.0) (2026-03-29)
+
+
+### Chores
+
+* **ci:** ignore all chai updates ([288d4a5](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/288d4a53a910e9e5ae0e2224b7497757550a237f))
+* **deps-dev:** bump handlebars from 4.7.8 to 4.7.9 ([62e8086](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/62e80866913e46317e3b9371a64bc39ec0195682))
+* **deps-dev:** bump jsdoc from 4.0.4 to 4.0.5 ([de584c8](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/de584c888fe776a8f2c0a84a7aac2eefaa9bdc81))
+* **deps-dev:** bump mocha from 11.1.0 to 11.2.2 ([0e95e9b](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/0e95e9bd93e9ecd2d90a04768e111145932d1fcb))
+* **deps-dev:** bump mocha from 11.2.2 to 11.3.0 ([e4bfdc6](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/e4bfdc6a29bec5647e498e59c2589122a7a8d3d0))
+* **deps-dev:** bump mocha from 11.3.0 to 11.5.0 ([334bb8b](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/334bb8b60c93869d064ea706cb0e00200af52651))
+* **deps-dev:** bump mocha from 11.5.0 to 11.6.0 ([2527d21](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/2527d2109bd841c69601b067af35267035c3fb9f))
+* **deps-dev:** bump mocha from 11.6.0 to 11.7.0 ([d868f3f](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/d868f3fdf37c3434dc4070edea418e7986b2ee4f))
+* **deps-dev:** bump mocha from 11.7.0 to 11.7.1 ([7da0f58](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/7da0f581827d7a8efdaf95e22b3f580f48b84468))
+* **deps-dev:** bump mocha from 11.7.1 to 11.7.2 ([2dee384](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/2dee384f48d859ba587f08856b82a75ac164afa9))
+* **deps-dev:** bump mocha from 11.7.2 to 11.7.4 ([d9c2e9b](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/d9c2e9b0a2ced3e9a9b7efb2d8a2f6d2e60b074a))
+* **deps-dev:** bump mocha from 11.7.4 to 11.7.5 ([ce23661](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/ce236614dbc7b52a293a0512da4e9487a080be92))
+* **deps-dev:** bump nodemon from 3.1.10 to 3.1.11 ([031f5bc](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/031f5bc2b43334872b5d0b60ace983c9c5f129be))
+* **deps-dev:** bump nodemon from 3.1.11 to 3.1.14 ([14ed69b](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/14ed69b6b879e22992729d5fed88b207b394e74f))
+* **deps-dev:** bump nodemon from 3.1.9 to 3.1.10 ([f67a955](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/f67a9553f108103490ef71c9e455a78e09475441))
+* **deps-dev:** bump nyc from 17.1.0 to 18.0.0 ([ff10908](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/ff1090834ac64807c071ff60bc272d0234a49162))
+* **deps-dev:** bump tar-fs from 2.1.1 to 2.1.2 ([db861a8](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/db861a83ae91c6a8e5413d2cccdb8c378ae6e0e5))
+* **deps-dev:** bump tar-fs from 2.1.2 to 2.1.3 ([2df1921](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/2df19211796a65590e712eaf0c5ff6ea61058ef9))
+* **deps-dev:** bump tar-fs from 2.1.3 to 2.1.4 ([103f6dd](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/103f6dd7b7fc17fb977e11b93230089bec9e93be))
+* **deps:** bump actions/checkout from 4 to 5 ([647ea55](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/647ea5558f5e1ba28d6b728c1c7a589971f80543))
+* **deps:** bump actions/checkout from 5 to 6 ([2fdf509](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/2fdf5090412115d9b67ac59a663443c1183232d5))
+* **deps:** bump actions/setup-node from 4 to 5 ([0adbf4c](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/0adbf4cce4aa1227a928ef6eac626beb35515d6c))
+* **deps:** bump actions/setup-node from 5 to 6 ([23d5339](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/23d5339e630ee4ce2d96df2f4d17390c1d799b4e))
+* **deps:** bump http-graceful-shutdown from 3.1.14 to 3.1.15 ([279145e](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/279145e6b7e8cca76d4149102e262ade37f4dbe2))
+* **deps:** bump http-graceful-shutdown from 3.1.15 to 3.1.16 ([94833e9](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/94833e944760a332e0f4643c1e72d95cc238b4a5))
+* **deps:** bump js-yaml ([02cfcb4](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/02cfcb4b707b93c5f047e1d159985aa1d4337d7a))
+* **deps:** bump lodash from 4.17.21 to 4.17.23 ([adee231](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/adee2315176e7fe34daea9dcb7e4d67f58fdb208))
+* **deps:** bump minimatch ([c79ef56](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/c79ef56926d00698ac0d5fcb3431b6ed2adea574))
+* **deps:** bump picomatch from 2.3.1 to 2.3.2 ([418465e](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/418465e729d4a40e5c0522f23af2be2165cfd35a))
+* **deps:** bump the opentelemetry group with 2 updates ([bafb4ab](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/bafb4abc373632427697ff7514a4967a857eef2a))
+* **deps:** bump the opentelemetry group with 2 updates ([166b24c](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/166b24c3257ae0a3441b86c1f0f210edb49220e1))
+* **deps:** bump the opentelemetry group with 2 updates ([761e2d6](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/761e2d649d07975f5e24499292e7ab0a58f813aa))
+* **deps:** bump the opentelemetry group with 2 updates ([1af3d2c](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/1af3d2cce51311ce86c1013693e109b2e8794eff))
+* **deps:** bump the opentelemetry group with 2 updates ([8dc21ff](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/8dc21ff6321d5658b38e65bbf06e53d06ccd0f90))
+* **deps:** bump the opentelemetry group with 2 updates ([b8e8ad7](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/b8e8ad733187ea6587495b4ffe767d5878274a8a))
+* **deps:** bump the opentelemetry group with 2 updates ([c0355da](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/c0355dae8754b03a692b1c79711596dd3b49b22f))
+* **deps:** bump the opentelemetry group with 2 updates ([a38e959](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/a38e959a7002ec366a85dabfc50c386600dd56ae))
+* **deps:** bump the opentelemetry group with 2 updates ([88c9335](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/88c9335fc4e1a72c7e78487fe7a493fe16897a5f))
+* **deps:** mark standard-version as dev dependency ([09daf4f](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/09daf4f397da88cdd7eaf13f176b951d4ad11c26))
+* **deps:** update dependencies ([b73d3d7](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/b73d3d74e077afa8e1543234f395b573481606db))
+
 ## [1.1.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v0.9.0...v1.1.0) (2025-03-24)
 
 

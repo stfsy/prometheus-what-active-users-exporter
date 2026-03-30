@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v1.2.0...v2.0.0) (2026-03-30)
+
+
+### Refactorings
+
+* use prom-client dependencies ([140d39b](https://github.com/stfsy/prometheus-what-active-users-exporter/commit/140d39b71cbe3abd563f2d8be97558acf021fb4d))
+
 ## [1.2.0](https://github.com/stfsy/prometheus-what-active-users-exporter/compare/v1.1.0...v1.2.0) (2026-03-29)
 
 

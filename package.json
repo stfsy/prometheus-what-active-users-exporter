@@ -36,9 +36,8 @@
   },
   "homepage": "https://github.com/stfsy/prometheus-what-active-users-exporter#readme",
   "dependencies": {
-    "@opentelemetry/exporter-prometheus": "^0.208.0",
-    "@opentelemetry/sdk-node": "0.208.0",
-    "http-graceful-shutdown": "^3.1.16"
+    "http-graceful-shutdown": "^3.1.16",
+    "prom-client": "^14.0.0"
   },
   "devDependencies": {
     "chai": "^6.2.2",

@@ -1,54 +1,58 @@
+name: release-please
+
 on:
   push:
-    tags:
-      - 'v*' 
+    branches:
+      - main
 
-name: release
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  build:
-    name: Create Release
+  release-please:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
+      - uses: googleapis/release-please-action@v5
+        id: release
+        with:
+          config-file: .release-please-config.json
+          manifest-file: .release-please-manifest.json
 
-      - name: Use Node.js 16
+      - name: Checkout code
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ steps.release.outputs.tag_name }}
+
+      - name: Setup Node.js (LTS)
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-node@v7
         with:
-          node-version: 16.x
+          node-version: lts/*
 
-      - run: npm ci
+      - name: Install dependencies
+        if: ${{ steps.release.outputs.release_created }}
+        run: npm ci
 
-      - name: Set env
-        run: | 
-          echo "RELEASE_NAME=${{ github.event.repository.name }}-${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
-      - name: Create changelog
-        run: |
-          ./.get_latest_changes_for_release_notes.sh > ./${RELEASE_NAME}.md
-
-      - name: Create release binaries
-        run: |
-            set -x
-            npx pkg --compress GZip --targets node16-linux-x64,node16-alpine-x64,node16-linuxstatic-x64 lib/index.js
-            mv index-alpine "${{ env.RELEASE_NAME }}"-alpine-x64
-            mv index-linux "${{ env.RELEASE_NAME }}"-linux-x64
-            mv index-linuxstatic "${{ env.RELEASE_NAME }}"-linuxstatic-x64
-            sha256sum "${{ env.RELEASE_NAME }}"-alpine-x64 >> sha256sums.txt
-            sha256sum "${{ env.RELEASE_NAME }}"-linux-x64 >> sha256sums.txt
-            sha256sum "${{ env.RELEASE_NAME }}"-linuxstatic-x64 >> sha256sums.txt
-            ls -l
-
-      - name: Release
-        uses: softprops/action-gh-release@v3
+      - name: Build and upload release binaries (Node 22 LTS)
+        if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: |
-            sha256sums.txt
-            ${{ env.RELEASE_NAME }}-alpine-x64
-            ${{ env.RELEASE_NAME }}-linux-x64
-            ${{ env.RELEASE_NAME }}-linuxstatic-x64
-          body_path: ./${{ env.RELEASE_NAME }}.md
+        run: |
+          set -x
+          RELEASE_NAME="${{ github.event.repository.name }}-${{ steps.release.outputs.tag_name }}"
+          npx @yao-pkg/pkg --compress GZip --targets node22-linux-x64,node22-alpine-x64,node22-linuxstatic-x64 lib/index.js
+          mv index-alpine "${RELEASE_NAME}-alpine-x64"
+          mv index-linux "${RELEASE_NAME}-linux-x64"
+          mv index-linuxstatic "${RELEASE_NAME}-linuxstatic-x64"
+          sha256sum "${RELEASE_NAME}-alpine-x64" >> sha256sums.txt
+          sha256sum "${RELEASE_NAME}-linux-x64" >> sha256sums.txt
+          sha256sum "${RELEASE_NAME}-linuxstatic-x64" >> sha256sums.txt
+          gh release upload "${{ steps.release.outputs.tag_name }}" \
+            sha256sums.txt \
+            "${RELEASE_NAME}-alpine-x64" \
+            "${RELEASE_NAME}-linux-x64" \
+            "${RELEASE_NAME}-linuxstatic-x64" \
+            --clobber
